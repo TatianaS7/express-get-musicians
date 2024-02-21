@@ -22,4 +22,10 @@ describe('./musicians endpoint', () => {
 
         expect(responseData[1].name).toBe('Drake');
     })
+    test('endpoint returns specified musician', async () => {
+        const response = await request(app).get('/musicians/1');
+        const responseData = JSON.parse(response.text);
+
+        expect(responseData.name).toBe('Mick Jagger');
+    })
 });
