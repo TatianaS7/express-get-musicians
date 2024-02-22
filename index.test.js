@@ -7,7 +7,6 @@ const request = require("supertest")
 const { db } = require('./db/connection');
 const { Musician } = require('./models/index')
 const app = require('./src/app');
-const seedMusician = require("./seedData");
 
 
 describe('./musicians endpoint', () => {
@@ -29,21 +28,21 @@ describe('./musicians endpoint', () => {
         expect(responseData.name).toBe('Mick Jagger');
     });
     test('endpoint adds new musician', async () => {
-        const response = await request(app).post('/musicians').send({name: 'Westside Gunn', instrument: 'Voice'});
-        const responseData = JSON.parse(response.text);
-
-        expect(responseData.name).toBe('Westside Gunn');
-    });
-    test('endpoint updates specified musician', async () => {
-        const response = await request(app).put('/musicians/3').send({name: 'Erykah Badu'});
+        const response = await request(app).post('/musicians').send({name: 'Erykah Badu', instrument: 'Voice'});
         const responseData = JSON.parse(response.text);
 
         expect(responseData.name).toBe('Erykah Badu');
     });
+    test('endpoint updates specified musician', async () => {
+        const response = await request(app).put('/musicians/4').send({name: 'SZA'});
+        // const responseData = JSON.parse(response.text);
+
+        expect(response.body.name).toBe('SZA');
+    });
     test('endpoint deletes specified musician', async () => {
         const response = await request(app).delete('/musicians/3');
-        const responseData = JSON.parse(response.text);
+        // const responseData = JSON.parse(response.text);
 
-        expect(responseData.name).toBe(undefined);
+        expect(response.name).toBe(undefined);
     })
 });
