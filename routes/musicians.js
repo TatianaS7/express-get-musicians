@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
         res.json(allMusicians);    
     } catch (error) {
         console.error('Error getting musicians', error);
-        res.status(500).json({ message: 'Internal Server Error'});
+        res.status(500).json({ error: 'Internal Server Error'});
     };
 });
 
@@ -20,7 +20,7 @@ router.get('/:id', async (req, res) => {
         res.json(musician);    
     } catch (error) {
         console.error('Error getting musician', error);
-        res.status(500).json({message: 'Internal Server Error'});
+        res.status(500).json({error: 'Internal Server Error'});
     };
 });
 
@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
         res.json(newMusician);
     } catch (error) {
         console.error('Error adding musician', error);
-        res.status(500).json({message: 'Internal Server Error'});
+        res.status(500).json({error: 'Internal Server Error'});
     };
 });
 
@@ -43,7 +43,7 @@ router.post('/:id', async (req, res) => {
         res.json(musician);
     } catch (error) {
         console.error('Error updating musician', error);
-        res.status(500).json({message: 'Internal Server Error'});
+        res.status(500).json({error: 'Internal Server Error'});
     };
 });
 
@@ -55,7 +55,7 @@ router.delete('/:id', async (req, res) => {
         res.json(await Musicians.findAll());
     } catch (error) {
         console.error('Error deleting musician', error);
-        res.status(500).json({message: 'Internal Server Error'});
+        res.status(500).json({error: 'Internal Server Error'});
     };
 });
 
